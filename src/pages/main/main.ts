@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, HostListener } from '@angular/core';
 import { Content, Events, IonicPage, NavController, ModalController, PopoverController } from 'ionic-angular';
 import { StateProvider } from '../../providers/state/state';
 import { VisualMarkerProvider } from '../../providers/visual-marker/visual-marker';
@@ -21,6 +21,7 @@ export class MainPage implements OnInit {
   provider: string;
   title: string;
   videoSrc: string;
+  innerWidth: any;
 
   constructor(
     public navCtrl: NavController,
@@ -36,8 +37,29 @@ export class MainPage implements OnInit {
   ngOnInit() {
     this.title = this.state.title;
     this.videoSrc = this.state.videoSrc;
+    this.innerWidth = window.innerWidth;
+    this.sendFrameResize();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    this.sendFrameResize();
+  }
+
+  sendFrameResize() {
+      if (window.parent) {
+        var data = {
+          action: 'resize',
+          height: this.innerWidth
+        }
+        // we might need to serialze this obj for IE
+        window.parent.postMessage(data, '*');
+      }
+    } catch (error) {
+      //
+    }
+  }
   ngAfterViewInit() {
     this.events.subscribe('player:startrecord', (cancel) => {
       this.recordedItem = null;
