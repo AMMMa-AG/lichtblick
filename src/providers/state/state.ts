@@ -30,13 +30,17 @@ export class StateProvider {
     private vmProvider: VisualMarkerProvider
   ) {
     // build configuration
-    this.hasSharing = !process.env.DISABLE_SHARING;
+    let params = new URLSearchParams(window.location.search.substr(1));
+    if (process.env.DISABLE_SHARING) {
+      this.hasSharing = !process.env.DISABLE_SHARING;
+    } else { 
+      this.hasSharing = !(params.get('disableSharing') === '1');
+    }
     this.whiteLabel = process.env.WHITE_LABEL;
     this.DEBUG = process.env.DEBUG;
     this.RELEASE = process.env.RELEASE;
     this.nwjs = typeof nw !== "undefined" ? nw : null;
 
-    let params = new URLSearchParams(window.location.search.substr(1));
     this.videoSrc = decodeURIComponent(params.get('src') || '');
     this.title = decodeURIComponent(params.get('title') || 'Lichtblick');
 
