@@ -1,8 +1,5 @@
 *.icns
 *.ico
-./.sourcemaps
-.vscode/chrome
-etc/*.png
-Lichtblick-win32-ia32
+.sourcemaps
 node_modules
 www
