@@ -1,0 +1,60 @@
+{
+  "name": "lichtblick-universal",
+  "version": "1.0.0",
+  "author": "AMMMa AG",
+  "homepage": "http://ammma.de/",
+  "private": false,
+  "license": "AGPL",
+  "main": "src/index.js",
+  "scripts": {
+    "clean": "ionic-app-scripts clean",
+    "build:dev": "ionic-app-scripts build",
+    "build": "ionic-app-scripts build --prod",
+    "build:noshare": "cross-env DISABLE_SHARING=true ionic-app-scripts build --prod",
+    "build:whitelabel": "cross-env WHITE_LABEL=true ionic-app-scripts build --prod",
+    "build:whitelabel-noshare": "cross-env WHITE_LABEL=true DISABLE_SHARING=true ionic-app-scripts build --prod",
+    "postbuild": "node config/post-build.js",
+    "lint": "ionic-app-scripts lint",
+    "serve": "ionic-app-scripts serve --port 3060 --browser chrome",
+    "ionic": "ionic"
+  },
+  "dependencies": {
+    "@angular/animations": "5.2.11",
+    "@angular/common": "5.2.11",
+    "@angular/compiler": "5.2.11",
+    "@angular/compiler-cli": "5.2.11",
+    "@angular/core": "5.2.11",
+    "@angular/forms": "5.2.11",
+    "@angular/http": "5.2.11",
+    "@angular/platform-browser": "5.2.11",
+    "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic/storage": "2.2.0",
+    "clipboard": "2.0.4",
+    "ionic": "3.20.0",
+    "ionic-angular": "3.9.4",
+    "ionicons": "4.5.5",
+    "jquery": "3.3.1",
+    "js-md5": "0.7.3",
+    "lodash": "4.17.11",
+    "plyr": "3.4.8",
+    "rxjs": "5.5.11",
+    "sw-toolbox": "3.6.0",
+    "uuid": "3.3.2",
+    "zone.js": "0.8.29"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "3.2.1",
+    "cheerio": "1.0.0-rc.2",
+    "cross-env": "5.1.4",
+    "learnweb-shapes": "file:lib/learnweb-shapes-0.0.70.tgz",
+    "qrcode": "1.3.3",
+    "rev-hash": "2.0.0",
+    "tmp": "0.0.33",
+    "tslint": "5.10.0",
+    "typescript": "~2.6.2"
+  },
+  "description": "Ein Lichtblick",
+  "config": {
+    "ionic_webpack": "./config/webpack.config.js"
+  }
+}

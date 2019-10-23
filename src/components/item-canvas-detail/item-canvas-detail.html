@@ -1,0 +1,73 @@
+<div #fullScreenContainer class="lw-fullscreen-container">
+  <ion-toolbar color="canvasToolbar">
+    <!-- show spinner while not ready -->
+    <ion-spinner *ngIf="!ready" color="light"></ion-spinner>
+    <ion-buttons left *ngIf="ready">
+      <button ion-button icon-only (click)="captureVideo()">
+        <ion-icon name="images"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons *ngIf="ready">
+      <button ion-button icon-only (click)="createCircle()">
+        <img src="assets/buttons/btn_circle.svg">
+      </button>
+      <button ion-button icon-only (click)="createRect()">
+        <img src="assets/buttons/btn_rectangle.svg">
+      </button>
+      <button ion-button icon-only (click)="createTriangle()">
+        <img src="assets/buttons/btn_triangle.svg">
+      </button>
+      <button ion-button icon-only (click)="createSimpleLine()">
+        <img src="assets/buttons/btn_line_orange.svg">
+      </button>
+      <button ion-button icon-only (click)="createLine()">
+        <img src="assets/buttons/single_line.svg">
+      </button>
+      <button ion-button icon-only (click)="createDoubleDashedLine()">
+        <img src="assets/buttons/double_dashed.svg">
+      </button>
+      <button ion-button icon-only (click)="createCam()">
+        <img src="assets/buttons/btn_cam.svg">
+      </button>
+      <button ion-button icon-only (click)="createNumber()">
+        <img src="assets/buttons/btn_number.svg">
+      </button>
+      <button ion-button icon-only (click)="createPipette()">
+        <img src="assets/buttons/btn_pipette.svg">
+      </button>
+      <button ion-button icon-only (click)="createFreehand()">
+        <img src="assets/buttons/btn_freehand.svg">
+      </button>
+      <button ion-button icon-only (click)="createCroppedImage()">
+        <img src="assets/buttons/btn_crop.svg">
+      </button>
+      <button ion-button icon-only (click)="createText()">
+        <img src="assets/buttons/btn_text.svg">
+      </button>
+      <button ion-button icon-only (click)="createArrowText()">
+        <img src="assets/buttons/btn_arrow_text_blue.svg">
+      </button>
+      <button ion-button icon-only (click)="createTextBubble()">
+        <img src="assets/buttons/btn_bubble.svg">
+      </button>
+      <button ion-button icon-only (click)="createSpeechBubble()">
+        <img src="assets/buttons/btn_speech.svg">
+      </button>
+      <button ion-button icon-only (click)="createThoughtBubble()">
+        <img src="assets/buttons/btn_thought.svg">
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button [disabled]="shapesCount == 0" ion-button icon-only (click)="openClear()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      &nbsp;
+      <button *ngIf="supportsFullScreen" ion-button icon-only (click)="toggleFullScreen()">
+        <ion-icon [name]="isFullScreen ? 'contract' : 'expand'"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- the shapes are inserted into this container -->
+  <div #shapesContainer></div>
+</div>

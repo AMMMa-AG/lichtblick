@@ -1,0 +1,17 @@
+<ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+  <ion-item-sliding #slidingItem *ngFor="let vm of markers">
+    <button ion-item no-lines detail-none (click)="showLex(vm)">
+      <ion-thumbnail item-start>
+        <img [src]="vmProvider.resolveMarkerImage(vm)">
+      </ion-thumbnail>
+      <p>{{vmProvider.resolveMarker(vm).title}}</p>
+    </button>
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="removeMarker(slidingItem, vm)">Entfernen</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+<button ion-button (click)="addMarker()">
+  Marker hinzufügen
+</button>

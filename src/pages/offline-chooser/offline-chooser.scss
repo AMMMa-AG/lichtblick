@@ -1,0 +1,11 @@
+page-offline-chooser {
+  #uploadArea {
+    height: 100%;
+    width: 100%;
+    border: 5px dotted color($colors, primary,  base);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

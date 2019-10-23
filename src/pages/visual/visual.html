@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{root.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group *ngFor="let node of root.nodes">
+    <ion-item-divider color="light">
+      <h1>{{node.title}}</h1>
+    </ion-item-divider>
+    <button ion-item detail-push *ngFor="let child of node.nodes" (click)="selectNode(child)">{{child.title}}</button>
+    <ion-item detail-none *ngFor="let child of node.entries">
+      <ion-thumbnail item-start (click)="showLex(child)">
+        <img [src]="resolveImage(child)">
+      </ion-thumbnail>
+      <ion-label class="lex-link" (click)="showLex(child)">
+        {{child.title}}
+      </ion-label>
+      <ion-toggle mode="ios" color="secondary" [(ngModel)]="child['checked']"></ion-toggle>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-item detail-none *ngFor="let child of root.entries">
+      <ion-thumbnail item-start (click)="showLex(child)">
+        <img [src]="resolveImage(child)">
+      </ion-thumbnail>
+      <ion-label class="lex-link" (click)="showLex(child)">
+        {{child.title}}
+      </ion-label>
+      <ion-toggle mode="ios" color="secondary" [(ngModel)]="child['checked']"></ion-toggle>
+    </ion-item>
+  </ion-item-group>
+</ion-content>

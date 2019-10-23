@@ -1,0 +1,27 @@
+<div [hidden]="!visible">
+
+  <ion-segment mode="md" [(ngModel)]="detailKind" (ionChange)="segmentChanged()">
+    <ion-segment-button value="textDetail">
+      Text
+    </ion-segment-button>
+    <ion-segment-button value="canvasDetail">
+      Bildwerkzeuge
+      <ion-badge color="primary" *ngIf="canvasDetail.shapesCount">
+        {{canvasDetail.shapesCount}}
+      </ion-badge>
+    </ion-segment-button>
+    <ion-segment-button value="markersDetail">
+      Marker
+      <ion-badge color="danger" *ngIf="markersDetail.markers.length">
+        {{markersDetail.markers.length}}
+      </ion-badge>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div padding-top>
+    <item-text-detail #textDetail [hidden]="detailKind != 'textDetail'"></item-text-detail>
+    <item-canvas-detail #canvasDetail [hidden]="detailKind != 'canvasDetail'"></item-canvas-detail>
+    <item-markers-detail #markersDetail [hidden]="detailKind != 'markersDetail'"></item-markers-detail>
+  </div>
+
+</div>

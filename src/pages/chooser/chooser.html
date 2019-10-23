@@ -1,0 +1,52 @@
+<ion-header *ngIf="enabled">
+  <ion-navbar>
+    <ion-title>Video einbetten</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="enabled">
+  <ion-grid>
+    <ion-row align-items-center>
+      <ion-col text-center>
+        <img class="yt-logo" src="assets/images/yt_logo_mono_light.png">
+      </ion-col>
+      <ion-col text-center>
+        <img class="vimeo-logo" src="assets/images/vimeo_logo_dark.png">
+      </ion-col>
+      <ion-col text-center *ngIf="uploadEnabled">
+        <div id="uploadArea" class="dropzone">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list no-lines>
+    <ion-item class="rounded">
+      <ion-textarea #urlTextArea spellcheck="false" autoresize placeholder="Fügen Sie hier die URL oder den Einbettungscode des Videos ein." [(ngModel)]="text" (ionChange)="textChanged()"  (focus)="focus($event)" (blur)="blur($event)"></ion-textarea>
+    </ion-item>
+    <ion-item class="rounded">
+      <ion-input [(ngModel)]="title" type="text" placeholder="Titel (optional)" (focus)="focus($event)" (blur)="blur($event)"></ion-input>
+    </ion-item>
+
+    <ion-list-header>
+        Visuelle Marker
+    </ion-list-header>
+
+    <div class="rounded">
+      <br/>
+      <ion-item detail-none *ngFor="let item of categories; let i = index">
+        <ion-label>{{item}}</ion-label>
+        <ion-checkbox [(ngModel)]="selectedCategories[i]"></ion-checkbox>
+      </ion-item>
+      <br/>
+    </div>
+
+    <ion-item text-center>
+      <button ion-button round large color="primary" [disabled]="isEmpty || !hasCategory" (click)="embed()" >Einbetten</button>
+    </ion-item>
+  </ion-list>
+
+  <p ion-text color="light" *ngIf="version">
+    Version {{version}}
+  </p>
+</ion-content>

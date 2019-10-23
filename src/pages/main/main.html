@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <a *ngIf="!state.whiteLabel" href="https://ammma.de" target="_blank">
+      <img height="30" src="assets/images/logo.svg">
+    </a>
+    <ion-title>
+      {{title}}
+    </ion-title>
+    <ion-buttons end *ngIf="!state.pending">
+      <button padding *ngIf="state.hasSharing" ion-button icon-only (click)="openShare()">
+        <ion-icon name="share"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="openPreview()">
+        <ion-icon name="print"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #content>
+  <ion-grid *ngIf="!state.pending">
+    <ion-row>
+      <ion-col col-12 col-sm-6>
+        <ng-container [ngSwitch]="provider">
+          <html5-player  *ngSwitchCase="'html5'"  #player [src]="videoSrc"></html5-player>
+          <iframe-player *ngSwitchCase="'iframe'" #player [src]="videoSrc"></iframe-player>
+        </ng-container>
+
+        <lichtblick-item-detail #itemDetail>
+        </lichtblick-item-detail>
+      </ion-col>
+
+      <ion-col col-12 col-sm-6>
+        <lichtblick-item-list #itemList>
+        </lichtblick-item-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,15 @@
+visual-page {
+  ion-thumbnail img {
+    cursor: pointer;
+  }
+
+  ion-label.lex-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: color($colors, primary,  base);
+
+    &:hover {
+      color: rgba(color($colors, primary,  base), 0.7);
+    }
+  }
+}

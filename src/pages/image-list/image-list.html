@@ -1,0 +1,10 @@
+<ion-list no-lines>
+  <ion-list-header>Vorschaubild</ion-list-header>
+  <ion-item *ngFor="let item of urls; let i = index">
+    <button ion-item detail-none (click)="select(item)">
+      <ion-thumbnail class="capture-img" item-start>
+        <img [src]="item">
+      </ion-thumbnail>
+    </button>
+  </ion-item>
+</ion-list>

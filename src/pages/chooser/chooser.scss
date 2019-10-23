@@ -1,0 +1,39 @@
+chooser-page {
+  background-color: white;
+
+  .yt-logo {
+    width: 120px;
+    opacity: 0.3;
+  }
+  .vimeo-logo {
+    width: 80px;
+    opacity: 0.3;
+  }
+
+  ion-textarea {
+    textarea {
+      height: 20vh !important;
+    }
+  }
+
+  .rounded {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(color($colors, primary,  base), 0.3) !important;
+  }
+
+  .rounded-focus {
+    border: 2px solid rgba(color($colors, primary,  base), 0.7) !important;
+  }
+
+  #uploadArea {
+    border: 5px dotted color($colors, primary,  base);
+    overflow: auto;
+  }
+
+  ion-grid {
+    padding-top: 30px !important;
+  }
+}

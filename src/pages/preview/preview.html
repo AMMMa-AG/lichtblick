@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button *ngIf="!pending" ion-button icon-only (click)="print()">
+        <ion-icon name="print"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let item of items; let i = index">
+    <ion-card-header>
+      {{item.title}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+
+          <ion-thumbnail *ngIf="state.isSegmentItem(item)" class="capture-img" item-start>
+            <img [src]="item.captureUrl">
+          </ion-thumbnail>
+
+          <p *ngIf="state.isSegmentItem(item)">{{ item.startTime | timeFormatter }}
+            <span *ngIf="item.startTime != item.endTime"> - {{item.endTime | timeFormatter}}</span>
+          </p>
+
+          <ion-thumbnail class="capture-img" item-end *ngFor="let vm of item.markers">
+            <img [src]="vmProvider.resolveMarkerImage(vm)">
+          </ion-thumbnail>
+        </ion-item>
+      </ion-list>
+
+      <p>
+        {{item.text}}
+      </p>
+
+      <div class="learnweb-shapes">
+        <canvas [id]="'c' + item.uid" width="800" height="600"></canvas>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <button ion-button full round (click)="print()">Drucken</button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

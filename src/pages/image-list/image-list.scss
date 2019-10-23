@@ -1,0 +1,16 @@
+image-list-page {
+
+  $thumbWidth: 50px;
+
+  ion-thumbnail {
+    min-width: unset !important;
+    min-height: unset !important;
+
+    img {
+      display: inline-block;
+      width: $thumbWidth !important;
+      height: auto !important;
+    }
+  }
+
+}

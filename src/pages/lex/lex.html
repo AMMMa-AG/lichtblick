@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-toolbar>
+    <button ion-button icon-only menuToggle *ngIf="navigationStack.length" (click)="goBack()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
+    <ion-title>{{title}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding #content>
+  <div [innerHTML]="html"></div>
+</ion-content>

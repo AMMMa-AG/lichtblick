@@ -1,0 +1,30 @@
+item-canvas-detail {
+  canvas {
+    border: 1px solid #f0f0f0;
+    border-top: none;
+    width: 100%;
+  }
+
+  ion-buttons img {
+    width: 30px;
+    height: 30px;
+  }
+
+  button:hover {
+    opacity: 0.7 !important;
+    color: white !important;
+  }
+}
+
+// for item-canvas-detail.ts:toggleFullScreen()
+div.lw-item-canvas-detail.lw-fullscreen-wrapper.lw-fullscreen {
+  button {
+    width: 40px;
+    height: 40px;
+
+    &:hover {
+      opacity: 0.7;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<div #fullScreenContainer class="lw-fullscreen-container">
+  <video #video autoplay playsinline width="100%" (click)="videoClicked($event)">
+    <source [src]="src">
+  </video>
+
+  <ion-toolbar color="lighter">
+    <ion-buttons left>
+      <button ion-button icon-only color="primary" [disabled]="!ready" (click)="playOrPause()">
+        <ion-icon [name]="playing ? 'pause' : 'play'"></ion-icon>
+      </button>
+      <ng-container *ngIf="!isFloating">
+        <button ion-button icon-only color="primary" [disabled]="!(ready && !recording)" (click)="shoot()">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+        <button ion-button icon-only [color]="recording ? 'danger' : 'primary'" [disabled]="!(ready)" (click)="record()">
+          <ion-icon name="recording"></ion-icon>
+        </button>
+      </ng-container>
+    </ion-buttons>
+    <ion-item no-lines color="lighter">
+      <ion-range #slider mode="md" min="0" [max]="duration * 1000" (ionChange)="slide()">
+      </ion-range>
+      <ion-note item-end class="hidden-sm-down">
+        {{currentTime | timeFormatter}}
+      </ion-note>
+    </ion-item>
+    <ion-buttons right>
+      <button *ngIf="!isFloating" ion-button icon-only color="primary" (click)="toggleFullScreen()">
+        <ion-icon [name]="isFullscreen ? 'contract' : 'expand'"></ion-icon>
+      </button>
+      <button *ngIf="isFloating" ion-button icon-only color="primary" (click)="cancelFloating()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</div>

@@ -1,0 +1,13 @@
+{
+  "editor.autoIndent": true,
+  "editor.formatOnType": true,
+  "eslint.enable": false,
+  "files.exclude": {
+    ".sourcemaps/": true,
+    "node_modules/": true,
+    "www/": true,
+    "Lichtblick-*/": true,
+  },
+  "files.associations": {
+  }
+}

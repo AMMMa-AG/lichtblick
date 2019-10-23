@@ -1,0 +1,14 @@
+<ion-list>
+  <ion-item no-lines>
+    <ion-label color="primary" floating>Titel</ion-label>
+    <ion-input placeholder="" [(ngModel)]="title" (ionChange)="detailChanged()"></ion-input>
+  </ion-item>
+
+  <ion-item no-lines>
+    <ion-label color="primary" floating>Kommentar</ion-label>
+    <ion-textarea placeholder="" [(ngModel)]="text" (ionChange)="detailChanged()"></ion-textarea>
+  </ion-item>
+
+  <!-- prevent a too long border-bottom for the previous item -->
+  <ion-item no-lines></ion-item>
+</ion-list>

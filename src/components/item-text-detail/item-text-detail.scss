@@ -1,0 +1,10 @@
+item-text-detail {
+  ion-textarea {
+    textarea {
+      resize: none;
+      overflow: visible;
+      min-height: 300px;
+      max-height: 600px;
+    }
+  }
+}

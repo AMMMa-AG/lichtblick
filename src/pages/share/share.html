@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Teilen</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item *ngIf="!link">
+      <button ion-button full round large [disabled]="link || pending" (click)="createLink()">Link generieren</button>
+    </ion-item>
+    <ion-item *ngIf="pending">
+      <div text-center>
+        <ion-spinner name="bubbles"></ion-spinner>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="link">
+      <ion-input select-all autofocus autocorrect="off" readonly="true" type="text" [(ngModel)]="link"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button #copyButton *ngIf="link" ion-button full round large>Link in die Zwischenablage kopieren</button>
+    </ion-item>
+  </ion-list>
+
+  <p *ngIf="link">
+    Bitte kopieren Sie den obigen Link und teilen Sie ihn über ein Medium Ihrer Wahl.
+  </p>
+
+  <ion-grid *ngIf="link">
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <img [src]="qrUrl">
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

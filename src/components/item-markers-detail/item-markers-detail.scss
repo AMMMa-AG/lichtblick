@@ -1,0 +1,18 @@
+item-markers-detail {
+  $size: 30px;
+
+  .item {
+    border-style: none !important;
+  }
+
+    ion-thumbnail {
+      min-width: $size !important;
+      min-height: $size !important;
+
+      img {
+        display: inline-block !important;
+        width: $size !important;
+        height: $size !important;
+      }
+    }
+}

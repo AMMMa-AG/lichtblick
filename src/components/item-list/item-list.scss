@@ -1,0 +1,46 @@
+lichtblick-item-list {
+  $thumbWidth: 50px;
+  $vmSize: 50px;
+
+  .item {
+    border-style: none !important;
+  }
+
+  ion-thumbnail.capture-img {
+    min-width: unset !important;
+    min-height: unset !important;
+
+    img {
+      display: inline-block;
+      width: $thumbWidth !important;
+      height: auto !important;
+    }
+  }
+
+  ion-thumbnail.vm {
+    min-width: unset !important;
+    min-height: unset !important;
+
+    img {
+      display: inline-block;
+      width: $vmSize !important;
+      height: $vmSize !important;
+    }
+  }
+
+  button.selected {
+    background-color: $app-selection-color;
+  }
+
+  button.textitem {
+      background-color: #FDECDD;
+
+    &.selected {
+      background-color: rgb(233, 205, 182);
+    }
+  }
+
+  button.has-annotations {
+    border-right: 4px solid rgba(color($colors, primary,  base), 0.75) !important;
+  }
+}

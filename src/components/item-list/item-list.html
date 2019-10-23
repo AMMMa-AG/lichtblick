@@ -1,0 +1,38 @@
+<ion-list reorder="true" (ionItemReorder)="reorderItems($event)">
+  <ion-item-sliding #slidingItem *ngFor="let item of items; let i = index">
+    <button ion-item no-lines detail-none (click)="select(item, i)"
+      [class.selected]="i == selectedIndex"
+      [class.textitem]="!state.isSegmentItem(item)"
+      [class.has-annotations]="!!item.visualAnnotations">
+      <ion-thumbnail class="capture-img" item-start *ngIf="item.captureUrl">
+          <img [src]="item.captureUrl" (click)="selectImage($event, item, i)">
+      </ion-thumbnail>
+
+      <ion-thumbnail class="capture-img" item-end *ngFor="let vm of item.markers">
+          <img [src]="vmProvider.resolveMarkerImage(vm)">
+      </ion-thumbnail>
+
+      <ng-container *ngIf="state.isSegmentItem(item)">
+          <h3>{{item.title}}</h3>
+          <p>
+          {{ item.startTime | timeFormatter }} <span *ngIf="item.startTime != item.endTime"> - {{item.endTime | timeFormatter}}</span>
+          </p>
+      </ng-container>
+
+      <ng-container *ngIf="!state.isSegmentItem(item)">
+          <h2>{{item.title}}</h2>
+          <p>
+              {{item.text}}
+          </p>
+      </ng-container>
+    </button>
+
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="deleteItem(slidingItem, i)">Entfernen</button>
+    </ion-item-options>
+
+    <ion-item-options side="left">
+      <button ion-button color="primary" (click)="insertItem($event, item, i)">Hinzufügen</button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
