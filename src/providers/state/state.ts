@@ -7,7 +7,6 @@ import md5 from 'js-md5';
 import Shapes from '../../lib/shapes';
 import { VisualMarkerProvider } from '../visual-marker/visual-marker';
 import { SchulCloudStorageClient } from './scstrorageclient';
-import { ThrowStmt } from '@angular/compiler';
 
 declare const process: any;
 declare const nw: any;
