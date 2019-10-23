@@ -48,6 +48,7 @@ export class MainPage implements OnInit {
   }
 
   sendFrameResize() {
+    try {
       if (window.parent) {
         var data = {
           action: 'resize',
@@ -60,6 +61,7 @@ export class MainPage implements OnInit {
       //
     }
   }
+  
   ngAfterViewInit() {
     this.events.subscribe('player:startrecord', (cancel) => {
       this.recordedItem = null;
