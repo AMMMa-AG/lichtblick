@@ -14,7 +14,7 @@ export class SchulCloudStorageClient {
       data: data,
       id: this.id
     }, '*');
-    return Promise.resolve(data);
+    return Promise.resolve({ id: this.id, success: true });
   }
 
   load(id) {

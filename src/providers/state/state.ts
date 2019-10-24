@@ -7,6 +7,7 @@ import md5 from 'js-md5';
 import Shapes from '../../lib/shapes';
 import { VisualMarkerProvider } from '../visual-marker/visual-marker';
 import { SchulCloudStorageClient } from './scstrorageclient';
+import throttle from 'lodash/throttle';
 
 declare const process: any;
 declare const nw: any;
@@ -34,7 +35,7 @@ export class StateProvider {
     let params = new URLSearchParams(window.location.search.substr(1));
     if (process.env.DISABLE_SHARING) {
       this.hasSharing = !process.env.DISABLE_SHARING;
-    } else { 
+    } else {
       this.hasSharing = !(params.get('disableSharing') === '1');
     }
     this.whiteLabel = process.env.WHITE_LABEL;
@@ -58,6 +59,11 @@ export class StateProvider {
 
     Shapes.Factory.setGlobalSessionServer(new SchulCloudStorageClient());
     this.sessionServer = Shapes.Factory.createSessionServer();
+
+    // monitor storage changes and share them with the session server
+    this.storage.on("change", throttle(() => {
+      this.sessionServer.save(this.export());
+    }, 1000));
 
     // do we have a session id?
     let sessionId = params.get('id');
