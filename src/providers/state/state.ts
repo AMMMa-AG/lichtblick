@@ -10,7 +10,6 @@ import { SchulCloudStorageClient } from './scstrorageclient';
 import throttle from 'lodash/throttle';
 
 declare const process: any;
-declare const nw: any;
 
 @Injectable()
 export class StateProvider {
@@ -24,7 +23,6 @@ export class StateProvider {
   DEBUG: boolean;
   RELEASE: boolean;
   whiteLabel: boolean;
-  nwjs: any;
   categories: number[];
 
   constructor(
@@ -41,7 +39,6 @@ export class StateProvider {
     this.whiteLabel = process.env.WHITE_LABEL;
     this.DEBUG = process.env.DEBUG;
     this.RELEASE = process.env.RELEASE;
-    this.nwjs = typeof nw !== "undefined" ? nw : null;
 
     this.videoSrc = decodeURIComponent(params.get('src') || '');
     this.title = decodeURIComponent(params.get('title') || 'Lichtblick');
@@ -98,12 +95,13 @@ export class StateProvider {
 
     this.categories = params.getAll('cat').map(item => parseInt(item));
     this.vmProvider.filter(this.categories);
-
-    this.initDragDrop();
   }
 
+  /**
+   * whether we're embedded in a node shell (nwjs, electron)
+   */
   get isShell(): boolean {
-    return !!this.nwjs || /Electron/.test(navigator.userAgent);
+    return false;
   }
 
   getItems(): Promise<Item[]> {
@@ -290,35 +288,5 @@ export class StateProvider {
     return this.sessionServer.save(this.export())
       .then(res => res.id)
       .catch(() => null);
-  }
-
-  /**
-   * Initializes and handles drag&drop when running under Electron.
-   */
-  initDragDrop() {
-    if (!/Electron/.test(navigator.userAgent)) return;
-
-    document.ondragover = () => false;
-    document.ondragleave = () => false;
-    document.ondragend = () => false;
-
-    document.ondrop = (e) => {
-      e.preventDefault();
-      let files = e.dataTransfer ? e.dataTransfer.files : null;
-      if (files && files.length) {
-        let file = files[0];
-        if (file.type && file.type.startsWith('video/')) {
-          let path = file["path"];
-          if (path) {
-            path = 'file:///' + path.replace(/\\/g, '/');
-            this.redirect([
-              { name: 'src', value: path },
-              { name: 'title', value: file.name }
-            ]);
-          }
-        }
-      }
-      return false;
-    };
   }
 }
